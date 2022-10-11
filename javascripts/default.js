@@ -1,14 +1,3 @@
-
-/**
-* @typedef Shopify
-* @type {Object}
-* @property {ShopfifyCheckout} Checkout
-*/
-/**
-* @typedef ShopfifyCheckout  
-* @property {'contact_information'|'shipping_method'|'payment_method'} step
-*/
-
 /**
 * @param {string} content HTML or text content for modal body
 * */
@@ -18,29 +7,56 @@ function createModal(content, options = {}) {
     const modalOffsetContainer = document.createElement('div');
     const modalBackDrop = document.createElement('div');
     const modalElement = document.createElement('div');
+    const arrowRight = document.createElement('div');
+    const arrowLeft = document.createElement('div');
+
     let contentElement = modalElement;
 
     if (options.isolated) {
         contentElement = modalElement.attachShadow({ mode: 'open' });
     }
 
+    arrowRight.setAttribute('style', `
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        border: 3px solid;
+        border-width: 0 3px 3px 0;
+        transform: rotate(315deg);
+        right: 10%;
+        cursor: pointer;
+        top: calc(45% - 20px);
+        z-index: 2;
+        `);
+    arrowLeft.setAttribute('style', `
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        border: 3px solid;
+        border-width: 0 3px 3px 0;
+        transform: rotate(135deg);
+        left: 10%;
+        cursor: pointer;
+        top: calc(45% - 20px);
+        z-index: 2;
+        `);
     modalWrapper.setAttribute('style', `
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    display: none;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
     `);
     modalOffsetContainer.setAttribute('style', `
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     `);
 
     modalBackDrop.setAttribute('style', `
@@ -49,23 +65,26 @@ function createModal(content, options = {}) {
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: rgba(255,255,255,.8); 
+        background-color: rgba(255,255,255,.93); 
         z-index: 2;
     `);
-
     modalElement.setAttribute('style', `
         width: 80%;
-        max-width: 600px;
+        max-width: 780px;
         z-index: 3;
         border-radius: 8px;
         overflow-y: auto;
         height: 80vh;
+        padding: 0 80px;
     `);
 
     modalWrapper.append(modalOffsetContainer);
     modalOffsetContainer.append(modalBackDrop);
     modalOffsetContainer.append(modalElement);
     document.body.append(modalWrapper);
+    
+    modalWrapper.append(arrowRight);
+    modalWrapper.append(arrowLeft);
 
     contentElement.innerHTML = content;
 
@@ -89,14 +108,57 @@ function createModal(content, options = {}) {
         styleNode.textContent = stylesSet;
         contentElement.appendChild(styleNode);
     }
+    function _arrowRightClick() {
+        arrowRightClickCallbacks.forEach(fn => fn.apply(this, arguments));
+    }
+    function _arrowLeftClick() {
+        arrowLeftClickCallbacks.forEach(fn => fn.apply(this, arguments));
+    }
+    let arrowRightClickCallbacks = [];
+    let arrowLeftClickCallbacks = [];
+    function arrowRightClick(fn) {
+        arrowRightClickCallbacks.push(fn);
+    }
+    function arrowLeftClick(fn) {
+        arrowLeftClickCallbacks.push(fn);
+    }
+
+    function hideArrowRight() {
+        arrowRight.style.display = 'none';
+    }
+    
+    function hideArrowLeft() {
+        arrowLeft.style.display = 'none';
+    }
+
+    function showArrowRight() {
+        arrowRight.style.display = 'block';
+    }
+    
+    function showArrowLeft() {
+        arrowLeft.style.display = 'block';
+    }
+
+    function showArrows() {
+        showArrowRight();
+        showArrowLeft();
+    }
 
     modalBackDrop.addEventListener('click', close);
+    arrowRight.addEventListener('click', _arrowRightClick);
+    arrowLeft.addEventListener('click', _arrowLeftClick);
+
     return {
         modalElement,
         contentElement,
         open, close,
         setContent,
-        setStyles
+        setStyles,
+        arrowRightClick,
+        arrowLeftClick,
+        hideArrowRight,
+        hideArrowLeft,
+        showArrows
     };
 }
 document.addEventListener('DOMContentLoaded', function () {
@@ -110,30 +172,68 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    const galleryLinks = [...document.querySelectorAll('.exhibit-gallery-item a, #collection-items a')];
+    let currentItem;
+
     const shadowStyles = `
+    h1 {
+        font: normal normal normal 40px/42px EB Garamond;
+        margin-top: 50px;
+    }
+    div, p {
+        font: normal normal normal 18px/28px EB Garamond;
+    }
     img {
         width: 100%;
     }`;
-    const modal = createModal('<p> Loading... </p>', { isolated: 1 });
+    const modal = createModal('<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p style="font-size: 28px;"> Loading... </p><div>', { isolated: 1 });
     modal.setStyles(shadowStyles);
 
     document.body.addEventListener('modal:close', e => {
-        modal.setContent('<p> Loading... </p>');
+        modal.setContent('<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p style="font-size: 28px;"> Loading... </p><div>');
     });
 
-    [...document.querySelectorAll('.exhibit-gallery-item a, #collection-items a')].forEach(el => {
+    modal.arrowLeftClick(() => {
+        const prevItem = currentItem;
+        currentItem = galleryLinks[galleryLinks.indexOf(currentItem) - 1] ? galleryLinks[galleryLinks.indexOf(currentItem) - 1] : currentItem;
+        if (prevItem !== currentItem) {
+            modalLoadCurrentItem();
+        }
+    });
+    modal.arrowRightClick(() => {
+        const prevItem = currentItem;
+        currentItem = galleryLinks[galleryLinks.indexOf(currentItem) + 1] ? galleryLinks[galleryLinks.indexOf(currentItem) + 1] : currentItem;
+        if (prevItem !== currentItem) {
+            modalLoadCurrentItem();
+        }
+    });
+    
+    galleryLinks.forEach(el => {
         el.addEventListener('click', async e => {
             e.preventDefault();
             modal.open();
-            const html = await fetch(el.href).then(r => r.text());
-            const tm = document.createElement('template');
-            tm.innerHTML = html;
-            const itemPageContent = tm.content.querySelector('#content').outerHTML;
-            modal.setContent(itemPageContent);
+            currentItem = el;
+            modalLoadCurrentItem();
         });
 
     });
 
+    async function modalLoadCurrentItem() {
+        const first = galleryLinks.indexOf(currentItem) == 0;
+        const last = galleryLinks.indexOf(currentItem) == galleryLinks.length - 1;
+        if (first) {
+            modal.hideArrowLeft();
+        } else if (last) {
+            modal.hideArrowRight();
+        } else {
+            modal.showArrows();
+        }
+        const html = await fetch(currentItem.href).then(r => r.text());
+        const tm = document.createElement('template');
+        tm.innerHTML = html;
+        const itemPageContent = tm.content.querySelector('#content').outerHTML;
+        modal.setContent(itemPageContent);
+    }
 
 });
 

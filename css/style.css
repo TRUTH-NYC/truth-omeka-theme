@@ -1897,11 +1897,6 @@ th {
     margin-right: 10px;
   }
 
-  .exhibit-item-caption p {
-    font-size: 12px;
-    margin-top: 1.5em;
-  }
-
   #exhibit-page-nav {
     border-top: 1px solid #ccc;
     line-height: 24px;
@@ -1920,6 +1915,32 @@ th {
   .gallery + p,
   .exhibit-items + p {
     margin-top: 0;
+  }
+
+  .exhibit-item-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffb3;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+  }
+
+  .exhibit-item.exhibit-gallery-item {
+      position: relative;
+  }
+  .exhibit-item-caption p {
+    font-size: 28px;
+    font-family: 'EB Garamond';
+  }
+  .exhibit-item:hover .exhibit-item-caption {
+    opacity: 1;
   }
 
   /* @end */
@@ -2154,7 +2175,7 @@ div#collection-items {
 
   gap: 3em;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .layout-gallery .gallery .exhibit-item, .layout-gallery .gallery .exhibit-item:nth-of-type(2n) {  
@@ -2519,7 +2540,7 @@ nav#exhibit-pages ul li img {
         "g g g g g g"
         "g g g g g g"
         "g g g g g g";
-    grid-template-columns: repeat(3, minmax(100px, 1fr)) 50px 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(100px, 1fr)) 50px 1.5fr 1.5fr;
     justify-content: center;
     align-items: start;
     grid-template-rows: 30px 30px auto;
