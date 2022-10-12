@@ -421,32 +421,23 @@ th {
 
   h1 {
     font-size: 32px;
-    line-height: 48px;
-    margin-bottom: 0.5em;
   }
 
   h2 {
     font-size: 24px;
-    line-height: 36px;
-    margin-bottom: 0.66667em;
   }
 
   h3, legend {
     font-size: 20px;
-    line-height: 30px;
-    margin-bottom: 0.8em;
+
   }
 
   h4 {
     font-size: 18px;
-    line-height: 27px;
-    margin-bottom: 0.88889em;
   }
 
   h5, h6 {
     font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 1.5em;
   }
 
   h6 {
