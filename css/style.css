@@ -455,7 +455,6 @@ th {
   }
 
   p, ul, ol, dl {
-    line-height: 24px;
     margin-bottom: 1.5em;
   }
 
@@ -674,7 +673,6 @@ th {
     cursor: pointer;
     font-family: 'PT Serif', serif;
     font-size: 16px;
-    line-height: 24px;
     outline: 0;
     overflow: visible;
     padding: 3px 10px;
