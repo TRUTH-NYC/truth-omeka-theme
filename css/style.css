@@ -2099,6 +2099,7 @@ div#collection-items {
 
 .exhibits.show .exhibit-block.layout-file-text p {
   grid-area: ct;
+  grid-row: span 1;
   font: normal normal normal 18px/28px EB Garamond;
   color: #464646;
 }
@@ -2109,6 +2110,10 @@ div#collection-items {
       "t t t t t t"
       "st st st st st st"
       "mp mp mp mp mp mp"
+      "ct ct ct ct ct ct"
+      "ct ct ct ct ct ct"
+      "ct ct ct ct ct ct"
+      "ct ct ct ct ct ct"
       "ct ct ct ct ct ct"
       "g g g g g g"
       "g g g g g g"
@@ -2524,6 +2529,9 @@ nav#exhibit-pages ul li img {
     grid-template-areas:
         "t t t gp mp mp"
         "st st st gp mp mp"
+        "ct ct ct gp mp mp"
+        "ct ct ct gp mp mp"
+        "ct ct ct gp mp mp"
         "ct ct ct gp mp mp"
         "g g g g g g"
         "g g g g g g"
