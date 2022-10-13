@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<?php echo get_view()->geolocationMapBrowse('map_browse', array('list' => 'map-links', 'params' => $params)); ?>
+<?php echo get_view()->geolocationMapBrowse('map_browse', array('list' => 'map-links')); ?>
 <div id="map-links" style="display:none"></div>
 
 <!-- 

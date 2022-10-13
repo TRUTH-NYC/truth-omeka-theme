@@ -35,14 +35,14 @@ function theme_sub_logo()
     }
 }
 function get_year_collections() {
-    $collections = get_records('Collection', array('Title'=>$collectionTitle), 250);
+    $collections = get_records('Collection', array(), 250);
     $year_collections = array_filter($collections, function($col) {
         return metadata($col, array('Dublin Core', 'Type')) == 'year';
     });
     return $year_collections;
 }
 function get_special_collection($name) {
-    $collections = get_records('Collection', array('Title'=>$collectionTitle), 50);
+    $collections = get_records('Collection', array(), 50);
     $collection = false;
     // for($i = 0, $size = count($collections); $i < $size; ++$i) {
     //     $col = $collections;
@@ -68,7 +68,7 @@ function get_special_collection($name) {
 // }
 
 function get_homepage_video() {
-    $Items = get_records('Item', array('Title'=>$ItemTitle), 250);
+    $Items = get_records('Item', array(), 250);
     $Item = array_filter($Items, function($item) {
         return metadata($item, array('Dublin Core', 'Type')) == 'Homepage Video';
     });
