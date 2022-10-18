@@ -55,12 +55,13 @@
         a:link {
             color: <?php echo $linkColor; ?>;
         }
-        a:visited {
-            color: <?php echo thanksroy_brighten($linkColor, 40); ?>;
+        /* a:visited {
+            color: <?php echo $linkColor; ?>;
         }
         a:hover, a:active, a:focus {
-            color: <?php echo thanksroy_brighten($linkColor, -40); ?>;
+            color: <?php echo $linkColor; ?>;
         }
+        */
 
         .button, button,
         input[type="reset"],
@@ -78,15 +79,15 @@
 
         @media (max-width:768px) {
             #primary-nav li {
-                background-color: <?php echo thanksroy_brighten($buttonColor, 40); ?>;
+                background-color: <?php echo $buttonColor; ?>;
             }
 
             #primary-nav li ul li {
-                background-color: <?php echo thanksroy_brighten($buttonColor, 20); ?>;
+                background-color: <?php echo $buttonColor; ?>;
             }
 
             #primary-nav li li li {
-                background-color: <?php echo thanksroy_brighten($buttonColor, -20); ?>;
+                background-color: <?php echo $buttonColor; ?>;
             }
         }
 
