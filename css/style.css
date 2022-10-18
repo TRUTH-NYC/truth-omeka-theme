@@ -2122,7 +2122,7 @@ div#collection-items {
   grid-template-columns: repeat(3, minmax(50px, 1fr)) 50px 1fr 1fr;
   justify-content: center;
   align-items: start;
-  grid-template-rows: 30px 70px auto;
+  grid-template-rows: 30px minmax(70px, auto) auto;
 }
 .exhibits.show #content > h1, .exhibits.show #exhibit-page-navigation {
   display: none;
@@ -2540,7 +2540,7 @@ nav#exhibit-pages ul li img {
     grid-template-columns: repeat(3, minmax(100px, 1fr)) 50px 1.5fr 1.5fr;
     justify-content: center;
     align-items: start;
-    grid-template-rows: 30px 30px auto;
+    grid-template-rows: 30px minmax(30px, auto) auto;
   }
 
   .exhibits.summary .exhibit-header-card {

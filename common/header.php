@@ -118,8 +118,11 @@
             <div class="nav desktop">
                 <?php foreach ($exhibits as $exhibit): ?>
                     <?php 
-                    $curex = get_current_record('exhibit', false); 
-                    $isCurrent = $curex->id == $exhibit->id;
+                     $isCurrent = false;
+                     $curex = get_current_record('exhibit', false); 
+                     if($curex) {
+                         $isCurrent = $curex->id == $exhibit->id;
+                     }
                     ?>
                     <h2 class="exhibit-nav desktop<?php echo $isCurrent ? ' current': ''?>"><?php echo link_to_exhibit(null, array(), null, $exhibit); ?></h2>
                 <?php endforeach; ?>
@@ -133,8 +136,11 @@
                 <div class="mobile-nav-panel">
                     <?php foreach ($exhibits as $exhibit): ?>
                         <?php 
+                        $isCurrent = false;
                         $curex = get_current_record('exhibit', false); 
-                        $isCurrent = $curex->id == $exhibit->id;
+                        if($curex) {
+                            $isCurrent = $curex->id == $exhibit->id;
+                        }
                         ?>
                         <h2 class="exhibit-nav mobile<?php echo $isCurrent ? ' current': ''?>"><?php echo link_to_exhibit(null, array(), null, $exhibit); ?></h2>
                     <?php endforeach; ?>                
