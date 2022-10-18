@@ -5,7 +5,7 @@
 <div class="item hentry">
     <?php if (metadata('item', 'has thumbnail')): ?>
     <div class="item-img">
-        <?php echo link_to_item(item_image(null, array('alt' => $itemTitle))); ?>
+        <?php echo link_to_item(item_image('fullsize', array('alt' => $itemTitle))); ?>
     </div>
     <?php endif; ?>
 
