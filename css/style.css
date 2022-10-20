@@ -4,7 +4,7 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-html {
+ html {
   font-family: sans-serif;
   /* 1 */
   -ms-text-size-adjust: 100%;
@@ -455,7 +455,7 @@ th {
   }
 
   p, ul, ol, dl {
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
   }
 
   ul ul, ul ol, ol ul, ol ol {
@@ -541,10 +541,14 @@ th {
 
   .collection .image,
   .exhibit .image {
-    -moz-box-shadow: -3px -3px 0 rgba(0, 0, 0, 0.2), -6px -6px 0 rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: -3px -3px 0 rgba(0, 0, 0, 0.2), -6px -6px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: -3px -3px 0 rgba(0, 0, 0, 0.2), -6px -6px 0 rgba(0, 0, 0, 0.1);
-    margin-left: 6px;
+    display: block;
+    max-width: 100%;
+    float: none;
+    margin: 0!important;
+    order: 1;
+  }
+  .exhibit .image img {
+    margin: 0;
   }
 
   .record {
@@ -1736,9 +1740,6 @@ th {
   /* @end */
   /* @group ----- Exhibit Builder ----- */
   .exhibit {
-    border-color: #ccc;
-    border-top-width: 0.0625em;
-    border-top-style: solid;
     padding-top: 1.4375em;
     overflow: hidden;
   }
@@ -2016,17 +2017,16 @@ div#collection-items {
     "ct ct ct mp mp mp"
     "ct ct ct mp mp mp"
     "ct ct ct mp mp mp"
-    "g1 g1 g2 g2 g3 g3"
-    "g1 g1 g2 g2 g3 g3"
-    "g1 g1 g2 g2 g3 g3"
-    "g1 g1 g2 g2 g3 g3";
+    "g g g g g g"
+    "g g g g g g"
+    "g g g g g g";
   grid-template-columns: repeat(6, 1fr);
   justify-content: center;
   align-items: start;
   grid-template-rows: 30px minmax(30px, auto) auto;
   gap: 1em 2em;
 }
-.exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
+/* .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
   display: flex;
   flex-direction: column;
 }
@@ -2038,7 +2038,18 @@ div#collection-items {
 }
 .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
   grid-area: g3;
+} */
+.exhibit-block.layout-exhibit-group {
+  grid-area: g;
 }
+.exhibit-block.layout-exhibit-group .exhibit {
+  display: flex;
+  flex-direction: column;
+}
+.exhibit-block.layout-exhibit-group .exhibit .image {
+  order: 1;
+}
+
 .exhibits.show #content > h1, .exhibits.show #exhibit-page-navigation {
   display: none;
 }
@@ -2455,10 +2466,9 @@ nav#exhibit-pages ul li img {
       "ct ct ct mp mp mp"
       "ct ct ct mp mp mp"
       "ct ct ct mp mp mp"
-      "g1 g1 g2 g2 g3 g3"
-      "g1 g1 g2 g2 g3 g3"
-      "g1 g1 g2 g2 g3 g3"
-      "g1 g1 g2 g2 g3 g3";
+      "g g g g g g g"
+      "g g g g g g g"
+      "g g g g g g g";
     grid-template-columns: repeat(6, 1fr);
     justify-content: center;
     align-items: start;
@@ -2563,4 +2573,14 @@ ul.nav > li.active a {
   header .mobile-nav {
       display: block;
   }
+}
+
+.exhibit .description {
+  font: normal normal normal 18px/28px EB Garamond;
+}
+
+.exhibit h2 {font: normal normal normal 40px/42px EB Garamond;margin-bottom: 0;}
+
+.exhibit .description p {
+  text-align: justify;
 }
