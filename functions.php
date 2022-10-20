@@ -49,5 +49,8 @@ function get_homepage_video() {
     });
     
     $videoItem = array_values($Item)[0];
-    return files_for_item(null, null, $videoItem);
+    return '<figure>' .
+    files_for_item(null, null, $videoItem) .
+    '<figcaption>' . metadata($videoItem, array('Dublin Core', 'Source')) . '</figcaption>' .
+    '</figure>';
 }

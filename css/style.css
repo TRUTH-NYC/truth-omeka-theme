@@ -1015,7 +1015,7 @@ th {
     margin-bottom: 2rem;
   }
 
-  header .nav {
+  header .nav.desktop {
     display: flex;
     justify-content: flex-end;
   }
@@ -1882,7 +1882,7 @@ th {
 
 
 
-header .exhibit-nav {
+header .nav > li {
   color: var(--color-gray);
   font: normal normal 600 18px/22px Montserrat;
   display: flex;
@@ -1892,18 +1892,18 @@ header .exhibit-nav {
   transition: color 300ms ease-in, border 300ms ease-in;
 }
 
-header .exhibit-nav.current {
+header .nav li.active {
   color: var(--color-active);
 }
-header .exhibit-nav.current a {
+header .nav li.active a {
   border-bottom: 10px solid currentColor;
   margin-bottom: -10px;
 }
-header .exhibit-nav:hover {
+header .nav li:hover {
   color: var(--color-hover-gray);
 }
 
-header .exhibit-nav a {
+header .nav li a {
   color: inherit;
 }
 
@@ -1944,6 +1944,7 @@ header .exhibit-nav a {
 .years-slider-container {
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
 }
 .arrow {
   width: 20px;
@@ -1968,11 +1969,16 @@ transform: rotate(-135deg)
 }
 
 .homepage-grid-2-cols {
-  --grid-item--max-width: 300px;
-  --grid-item--min-width: 200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  display: flex;
   gap: 3em;
+  flex-wrap: wrap;
+}
+.homepage-content.grid.homepage-grid-2-cols > .homepage-paragraph {
+  flex: 1 1 300px;
+}
+
+.homepage-content.grid.homepage-grid-2-cols > .homepage-video {
+  flex: 2 2 500px;
 }
 @media screen and (max-width: 1210px) {
   .homepage-paragraph {
@@ -1999,25 +2005,39 @@ div#collection-items {
   color: #464646;
 }
 /* Exhibit Show Page Modifications */
+
+  /* Exhibit Show Page Modifications */
 .exhibits.show #content {
   display: grid;
   grid-template-areas:
-      "t t t t t t"
-      "st st st st st st"
-      "mp mp mp mp mp mp"
-      "ct ct ct ct ct ct"
-      "ct ct ct ct ct ct"
-      "ct ct ct ct ct ct"
-      "ct ct ct ct ct ct"
-      "ct ct ct ct ct ct"
-      "g g g g g g"
-      "g g g g g g"
-      "g g g g g g"
-      "g g g g g g";
-  grid-template-columns: repeat(3, minmax(50px, 1fr)) 50px 1fr 1fr;
+    "t t t mp mp mp"
+    "st st st mp mp mp"
+    "ct ct ct mp mp mp"
+    "ct ct ct mp mp mp"
+    "ct ct ct mp mp mp"
+    "ct ct ct mp mp mp"
+    "g1 g1 g2 g2 g3 g3"
+    "g1 g1 g2 g2 g3 g3"
+    "g1 g1 g2 g2 g3 g3"
+    "g1 g1 g2 g2 g3 g3";
+  grid-template-columns: repeat(6, 1fr);
   justify-content: center;
   align-items: start;
-  grid-template-rows: 30px minmax(70px, auto) auto;
+  grid-template-rows: 30px minmax(30px, auto) auto;
+  gap: 1em 2em;
+}
+.exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
+  display: flex;
+  flex-direction: column;
+}
+.exhibits.show .exhibit-block.layout-file-text:nth-child(2) {
+  grid-area: g1;
+}
+.exhibits.show .exhibit-block.layout-file-text:nth-child(3) {
+  grid-area: g2;
+}
+.exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
+  grid-area: g3;
 }
 .exhibits.show #content > h1, .exhibits.show #exhibit-page-navigation {
   display: none;
@@ -2099,10 +2119,13 @@ a.exhibit-item-link {
   padding: 10%;
 }
 .exhibit-cover-image {
-  background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
 .exhibit-cover-image.mobile-only {
-  min-height: 32vh;
+  padding-top: 100%;
   margin-bottom: 1em;
 }
 
@@ -2116,7 +2139,9 @@ a.exhibit-item-link {
   vertical-align: middle;
   line-height: 20px;
   font-family: sans-serif;
-  font: normal normal normal 13px/45px Roboto;
+  font: normal normal normal 13px/45px 'Montserrat';
+  color: #707070;
+  text-transform: uppercase;
 }
 
 .exhibits.summary .exhibit-description h1 {
@@ -2125,23 +2150,23 @@ a.exhibit-item-link {
 }
 .exhibits.summary .exhibit-description h2 {
   color: #fff;
-  font: normal normal 50px/54px Montserrat;
+  font: normal normal 40px/54px Montserrat;
 }
 
 .sub-category-rich-link h3 {
-  font-size: 44px;
+  font-size: 34px;
   color: #000;
 }
 
 nav#exhibit-pages ul {
-  --grid-item--max-width: 300px;
-  --grid-item--min-width: 200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
   gap: 24px;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
-
+nav#exhibit-pages ul > li {
+  flex: 1 1 320px;
+}
 nav#exhibit-pages ul li img {
   max-width: 100%;
 }
@@ -2153,10 +2178,10 @@ nav#exhibit-pages ul li img {
 
 #map_browse {
   margin-top: 50px;
-  height: 400px;
+  height: 40vh;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 800px) {
   /* @group ----- Grid ----- */
   #content {
     margin-right: 0;
@@ -2419,25 +2444,40 @@ nav#exhibit-pages ul li img {
   
 
   /* Exhibit Show Page Modifications */
+
+  /* Exhibit Show Page Modifications */
   .exhibits.show #content {
     display: grid;
     grid-template-areas:
-        "t t t gp mp mp"
-        "st st st gp mp mp"
-        "ct ct ct gp mp mp"
-        "ct ct ct gp mp mp"
-        "ct ct ct gp mp mp"
-        "ct ct ct gp mp mp"
-        "g g g g g g"
-        "g g g g g g"
-        "g g g g g g"
-        "g g g g g g";
-    grid-template-columns: repeat(3, minmax(100px, 1fr)) 50px 1.5fr 1.5fr;
+      "t t t mp mp mp"
+      "st st st mp mp mp"
+      "ct ct ct mp mp mp"
+      "ct ct ct mp mp mp"
+      "ct ct ct mp mp mp"
+      "ct ct ct mp mp mp"
+      "g1 g1 g2 g2 g3 g3"
+      "g1 g1 g2 g2 g3 g3"
+      "g1 g1 g2 g2 g3 g3"
+      "g1 g1 g2 g2 g3 g3";
+    grid-template-columns: repeat(6, 1fr);
     justify-content: center;
     align-items: start;
     grid-template-rows: 30px minmax(30px, auto) auto;
+    gap: 1em 2em;
   }
-
+  .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+  }
+  .exhibits.show .exhibit-block.layout-file-text:nth-child(2) {
+      grid-area: g1;
+  }
+  .exhibits.show .exhibit-block.layout-file-text:nth-child(3) {
+      grid-area: g2;
+  }
+  .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
+      grid-area: g3;
+  }
   .exhibits.summary .exhibit-header-card {
     grid-template-columns: 1fr 1fr;
   }  
@@ -2490,10 +2530,29 @@ nav#exhibit-pages ul li img {
   display: block;
 }
 
-h2.exhibit-nav.mobile {
+.nav.mobile li {
   padding: 2em 2em 0 0;
   font-size: 1.2em;
 }
+
+ul.nav > li {
+  color: var(--color-gray);
+  font: normal normal 600 18px/22px Montserrat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 10px;
+  transition: color 300ms ease-in, border 300ms ease-in;
+}
+
+ul.nav > li.active {
+  color: var(--color-active);
+}
+ul.nav > li.active a {
+  border-bottom: 10px solid currentColor;
+  margin-bottom: -10px;    
+}
+
 @media only screen and (max-width: 900px) {
   header .nav.desktop {
       display: none;
