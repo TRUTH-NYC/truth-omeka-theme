@@ -4,9 +4,14 @@
 
 <div class="item hentry">
     <?php if (metadata('item', 'has thumbnail')): ?>
-    <div class="item-img">
+    <figure class="item-img">
         <?php echo link_to_item(item_image('fullsize', array('alt' => $itemTitle))); ?>
-    </div>
+        <?php 
+            echo '<figcaption>';
+                echo metadata('item', array('Dublin Core', 'Source'));
+            echo '</figcaption>';    
+        ?>
+    </figure>
     <?php endif; ?>
 
     <h1><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>

@@ -178,13 +178,9 @@ svg:not(:root) {
   overflow: hidden;
 }
 
-/* Grouping content
-   ========================================================================== */
-/**
- * Address margin not present in IE 8/9 and Safari.
- */
 figure {
-  margin: 1em 40px;
+  margin: 0;
+  margin-bottom: 1em;
 }
 
 /**
@@ -2129,6 +2125,14 @@ a.exhibit-item-link {
 .exhibit-header-card-content {
   padding: 10%;
 }
+
+.exhibit-header-card p {
+  font-size: var(--font-size);
+  color: var(--color, #000);
+  text-align: var(--text-align, left);
+  font-family: var(--font-family, left);
+}
+
 .exhibit-cover-image {
   display: none;
 }
@@ -2154,12 +2158,16 @@ a.exhibit-item-link {
 }
 
 .exhibits.summary .exhibit-description h1 {
-  color: #fff;
-  font: normal normal 28px/54px EB Garamond;
+  font-family: var(--title-font-family, EB Garamond);
+  font-size: var(--title-font-size, 28px);
+  color: var(--title-color, #fff);
+  line-height: var(--title-line-height, 54px);
 }
 .exhibits.summary .exhibit-description h2 {
-  color: #fff;
-  font: normal normal 40px/54px Montserrat;
+  font-family: var(--subtitle-font-family);
+  font-size: var(--subtitle-font-size);
+  color: var(--subtitle-color);
+  line-height: var(--subtitle-line-height);
 }
 
 .sub-category-rich-link h3 {
