@@ -2133,13 +2133,39 @@ a.exhibit-item-link {
   font-family: var(--font-family, left);
 }
 
+.exhibit-cover-image figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px 10px;
+  background-color: rgba(0,0,0,.5);
+  color: #ffffffb3;
+}
+.exhibit-cover-image figcaption:empty {
+  display: none;
+}
 .exhibit-cover-image {
   display: none;
+  position: relative;
 }
 
 .exhibit-cover-image.mobile-only {
   margin: 0;
   display: block;
+}
+
+
+.exhibit-cover-image-img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.exhibit-cover-image-img.mobile-only {
+padding-top: 100%;
+margin-bottom: 1em;
 }
 
 .exhibits.summary .exhibit-description a {
