@@ -2095,7 +2095,7 @@ div#collection-items {
 
   gap: 3em;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 0px;
 }
 
 .layout-gallery .gallery .exhibit-item, .layout-gallery .gallery .exhibit-item:nth-of-type(2n) {  
@@ -2130,14 +2130,12 @@ a.exhibit-item-link {
   padding: 10%;
 }
 .exhibit-cover-image {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  display: none;
 }
 
 .exhibit-cover-image.mobile-only {
-  padding-top: 100%;
-  margin-bottom: 1em;
+  margin: 0;
+  display: block;
 }
 
 .exhibits.summary .exhibit-description a {
@@ -2492,9 +2490,15 @@ nav#exhibit-pages ul li img {
     grid-template-columns: 1fr 1fr;
   }  
 
+  .exhibit-cover-image {
+    display: block;
+  }
+  .exhibit-cover-image.mobile-only {
+    display: none;
+  }
   .mobile-only {
     display: none;
-  }  
+  }
   /* @end */
 }
 
