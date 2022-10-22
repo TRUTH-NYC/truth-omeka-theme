@@ -9,37 +9,22 @@ function createModal(content, options = {}) {
     const modalElement = document.createElement('div');
     const arrowRight = document.createElement('div');
     const arrowLeft = document.createElement('div');
+    const closeButton = document.createElement('div');
 
+    closeButton.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>`;
     let contentElement = modalElement;
 
     if (options.isolated) {
         contentElement = modalElement.attachShadow({ mode: 'open' });
     }
+    
+    arrowRight.classList.add('modal-arrow-right');
+    arrowLeft.classList.add('modal-arrow-left');
+    closeButton.classList.add('modal-close');
 
-    arrowRight.setAttribute('style', `
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        border: 3px solid;
-        border-width: 0 3px 3px 0;
-        transform: rotate(315deg);
-        right: 10%;
-        cursor: pointer;
-        top: calc(45% - 20px);
-        z-index: 2;
-        `);
-    arrowLeft.setAttribute('style', `
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        border: 3px solid;
-        border-width: 0 3px 3px 0;
-        transform: rotate(135deg);
-        left: 10%;
-        cursor: pointer;
-        top: calc(45% - 20px);
-        z-index: 2;
-        `);
     modalWrapper.setAttribute('style', `
         position: fixed;
         width: 100%;
@@ -68,6 +53,7 @@ function createModal(content, options = {}) {
         background-color: rgba(255,255,255,.93); 
         z-index: 2;
     `);
+    modalElement.classList.add('modal-element');
     modalElement.setAttribute('style', `
         width: 80%;
         max-width: 780px;
@@ -75,7 +61,6 @@ function createModal(content, options = {}) {
         border-radius: 8px;
         overflow-y: auto;
         height: 80vh;
-        padding: 0 80px;
     `);
 
     modalWrapper.append(modalOffsetContainer);
@@ -85,6 +70,7 @@ function createModal(content, options = {}) {
     
     modalWrapper.append(arrowRight);
     modalWrapper.append(arrowLeft);
+    modalWrapper.append(closeButton);
 
     contentElement.innerHTML = content;
 
@@ -144,6 +130,7 @@ function createModal(content, options = {}) {
         showArrowLeft();
     }
 
+    closeButton.addEventListener('click', close);
     modalBackDrop.addEventListener('click', close);
     arrowRight.addEventListener('click', _arrowRightClick);
     arrowLeft.addEventListener('click', _arrowLeftClick);
@@ -185,6 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     img {
         width: 100%;
+    }
+    figure {
+        margin: 0;
     }`;
     const modal = createModal('<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p style="font-size: 28px;"> Loading... </p><div>', { isolated: 1 });
     modal.setStyles(shadowStyles);

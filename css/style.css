@@ -2622,3 +2622,57 @@ ul.nav > li.active a {
 .exhibit .description p {
   text-align: justify;
 }
+
+/* Modal styles */
+.modal-element {
+  padding: 0 80px;
+}
+
+.modal-arrow-right {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 3px solid;
+  border-width: 0 3px 3px 0;
+  transform: rotate(315deg);
+  right: 10%;
+  cursor: pointer;
+  top: calc(45% - 20px);
+  z-index: 4;
+}
+.modal-arrow-left {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 3px solid;
+  border-width: 0 3px 3px 0;
+  transform: rotate(135deg);
+  left: 10%;
+  cursor: pointer;
+  top: calc(45% - 20px);
+  z-index: 4;
+}
+.modal-close {
+  position: absolute;
+  z-index: 4;
+  width: 60px;
+  height: 60px;
+  top: 2%;
+  right: 5%;
+  cursor: pointer;
+}
+@media screen and (max-width: 640px) {
+  .modal-element {
+    padding: 0 40px;
+  }  
+  .modal-arrow-left { 
+    left: 5%;
+  }
+  .modal-arrow-right {
+    right: 5%;
+  }
+  .modal-arrow-left, .modal-arrow-right {
+    width: 30px;
+    height: 30px;
+  }
+}
