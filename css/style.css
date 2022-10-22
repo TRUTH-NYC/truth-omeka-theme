@@ -2183,7 +2183,7 @@ margin-bottom: 1em;
   text-transform: uppercase;
 }
 
-.exhibits.summary .exhibit-description h1 {
+.exhibits.summary .exhibit-description h1 .exhibit-header-card h1 {
   font-family: var(--title-font-family, EB Garamond);
   font-size: var(--title-font-size, 28px);
   color: var(--title-color, #fff);
