@@ -1906,7 +1906,7 @@ header .nav li a {
 
 .container {
   padding: 0 4%;
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -2267,6 +2267,11 @@ nav#exhibit-pages ul li img {
   /* @group ----- Header ----- */
   header {
     background-size: cover !important;
+    margin-bottom: 60px !ımportant;
+  }
+
+  [logo-container] {
+    margin-top: 20px;
   }
 
   #primary-nav .active ul {
