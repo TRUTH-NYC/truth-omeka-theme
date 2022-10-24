@@ -1906,6 +1906,8 @@ header .nav li a {
 
 .container {
   padding: 0 4%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 #site-above-title {
