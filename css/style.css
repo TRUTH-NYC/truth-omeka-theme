@@ -2099,14 +2099,7 @@ div#collection-items {
   margin-top: 50px;
 }
 
-a.exhibit-item-link {
-  padding-top: 100%;
-  position: relative;
-}
-
 .layout-gallery .exhibit-item-link img {
-  position: absolute;
-  top: 0;
   width: 100%;
 }
 
