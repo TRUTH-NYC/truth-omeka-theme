@@ -2009,20 +2009,16 @@ div#collection-items {
 .exhibits.show #content {
   display: grid;
   grid-template-areas:
-    "t t t mp mp mp"
-    "st st st mp mp mp"
-    "ct ct ct mp mp mp"
-    "ct ct ct mp mp mp"
-    "ct ct ct mp mp mp"
-    "ct ct ct mp mp mp"
-    "g g g g g g"
-    "g g g g g g"
-    "g g g g g g";
+    "t t t t t t"
+    "st st st st st st"
+    "mp mp mp mp mp mp"
+    "b b b b b b";
   grid-template-columns: repeat(6, 1fr);
   justify-content: center;
   align-items: start;
   grid-template-rows: 30px minmax(30px, auto) auto;
   gap: 1em 2em;
+  padding-top: 2em;
 }
 /* .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
   display: flex;
@@ -2056,7 +2052,6 @@ div#collection-items {
 .exhibits.show #exhibit-pages > h4,
 .exhibits.show #exhibit-pages > ul, 
 .exhibits.show #exhibit-pages > ul > li,
-.exhibits.show #exhibit-blocks,
 .exhibits.show .exhibit-block.layout-gallery,
 .exhibits.show .exhibit-block.layout-file-text
 {
@@ -2224,6 +2219,10 @@ nav#exhibit-pages ul li img {
 #map_browse {
   margin-top: 50px;
   height: 40vh;
+}
+
+.exhibits.show #exhibit-blocks {
+  grid-area: b;
 }
 
 @media screen and (min-width: 800px) {
@@ -2464,16 +2463,6 @@ nav#exhibit-pages ul li img {
     clear: both;
   }
 
-  #exhibit-blocks,
-  .exhibits.summary #primary,
-  #exhibit-page-navigation {
-    width: 74.64789%;
-    float: left;
-    margin-right: 1.40845%;
-    display: inline;
-    float: left;
-  }
-
   #exhibit-page-navigation {
     clear: none;
   }
@@ -2499,21 +2488,17 @@ nav#exhibit-pages ul li img {
   .exhibits.show #content {
     display: grid;
     grid-template-areas:
-      "t t t mp mp mp"
-      "st st st mp mp mp"
-      "ct ct ct mp mp mp"
-      "ct ct ct mp mp mp"
-      "ct ct ct mp mp mp"
-      "ct ct ct mp mp mp"
-      "g g g g g g g"
-      "g g g g g g g"
-      "g g g g g g g";
-    grid-template-columns: repeat(6, 1fr);
+                          "t t t mp mp mp"
+                          "st st st mp mp mp"
+                          "b b b b b b";
+    grid-template-columns: 1fr 1fr repeat(2, auto) 1fr 1fr;
     justify-content: center;
     align-items: start;
     grid-template-rows: 30px minmax(30px, auto) auto;
     gap: 1em 2em;
+    padding-top: 0;
   }
+
   .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
     display: flex;
     flex-direction: column;
