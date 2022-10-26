@@ -14,15 +14,16 @@
     </figure>
     <?php endif; ?>
 
-    <h1><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
+    <?php 
+        // we need to use inline style here because modal uses a isolated css context. 
+    ?>
+    <h1 style="display: none"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
 
-    <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet' => 250))): ?>
+    <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array())): ?>
     <div class="item-description">
         <?php echo $description; ?>
     </div>
     <?php endif; ?>
 </div>
-
-<p><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
 
 <?php echo foot(); ?>
