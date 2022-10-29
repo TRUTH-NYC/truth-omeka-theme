@@ -59,7 +59,7 @@ function createModal(content, options = {}) {
         max-width: 780px;
         z-index: 3;
         border-radius: 8px;
-        overflow-y: auto;
+        overflow: hidden;
         height: 80vh;
     `);
 
@@ -175,6 +175,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     figure {
         margin: 0;
+    }
+    #content {
+        height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }`;
     const modal = createModal('<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p style="font-size: 28px;"> Loading... </p><div>', { isolated: 1 });
     modal.setStyles(shadowStyles);

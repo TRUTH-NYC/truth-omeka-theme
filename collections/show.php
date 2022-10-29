@@ -24,14 +24,14 @@ $totalItems = metadata('collection', 'total_items');
     <?php if ($totalItems > 0): ?>
         <?php foreach (loop('items') as $item): ?>
         <?php $itemTitle = metadata('item', 'display_title'); ?>
-        <div class="item hentry">
+        <figure class="item hentry">
             <?php if (metadata('item', 'has thumbnail')): ?>
             <div class="item-img">
-                <?php echo link_to_item(item_image(null, array('alt' => $itemTitle))); ?>
+                <?php echo link_to_item(item_image('thumbnail', array('alt' => $itemTitle))); ?>
             </div>
             <?php endif; ?>
-
-        </div>
+            <figcaption> <?php echo $itemTitle; ?> </figcaption>
+            </figure>
         <?php endforeach; ?>
         <!-- <?php echo link_to_items_browse(__(plural('View item', 'View all %s items', $totalItems), $totalItems), array('collection' => metadata('collection', 'id')), array('class' => 'view-items-link')); ?> -->
     <?php else: ?>
