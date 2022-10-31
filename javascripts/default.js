@@ -171,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
         font: normal normal normal 18px/28px EB Garamond;
     }
     img {
-        width: 100%;
+        width: auto;
+        height: 100%;
     }
     figure {
         margin: 0;
@@ -180,7 +181,19 @@ document.addEventListener('DOMContentLoaded', function () {
         height: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
-    }`;
+    }
+    .item-img {
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .item-img a {
+        display: flex;
+        height: 90%;
+        justify-content: center;
+    }
+    `;
     const modal = createModal('<div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><p style="font-size: 28px;"> Loading... </p><div>', { isolated: 1 });
     modal.setStyles(shadowStyles);
 
