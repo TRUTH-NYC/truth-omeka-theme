@@ -182,6 +182,11 @@ document.addEventListener('DOMContentLoaded', function () {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .item.hentry {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
     .item-img {
         height: 80%;
         display: flex;
