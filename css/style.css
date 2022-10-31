@@ -2148,6 +2148,7 @@ div#collection-items {
 .exhibit-cover-image.mobile-only {
   margin: 0;
   display: block;
+  height: 30vh;
 }
 
 
