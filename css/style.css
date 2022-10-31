@@ -2053,6 +2053,7 @@ div#collection-items {
 .exhibits.show #exhibit-pages > ul, 
 .exhibits.show #exhibit-pages > ul > li,
 .exhibits.show .exhibit-block.layout-gallery,
+.exhibits.show .exhibit-block.layout-gallery-by-tag,
 .exhibits.show .exhibit-block.layout-file-text
 {
   display: contents;
@@ -2075,9 +2076,11 @@ div#collection-items {
   font: normal normal normal 48px/48px EB Garamond;
   grid-area: st;
 }
+.exhibits.show .exhibit-block.layout-gallery-by-tag .gallery .exhibit-gallery-item,
 .exhibits.show .exhibit-block.layout-gallery .gallery .exhibit-gallery-item {
   text-align: center;   
 }
+.exhibits.show .exhibit-block.layout-gallery-by-tag .gallery,
 .exhibits.show .exhibit-block.layout-gallery .gallery {
   grid-area: g;
 
@@ -2091,6 +2094,7 @@ div#collection-items {
   margin-top: 0px;
 }
 
+.layout-gallery-by-tag .gallery .exhibit-item, .layout-gallery-by-tag .gallery .exhibit-item:nth-of-type(2n),
 .layout-gallery .gallery .exhibit-item, .layout-gallery .gallery .exhibit-item:nth-of-type(2n) {  
   margin: 0;
   width: 100%!important;
@@ -2099,6 +2103,7 @@ div#collection-items {
   margin-top: 50px;
 }
 
+.layout-gallery-by-tag a img,
 .layout-gallery .exhibit-item-link img {
   width: 100%;
 }
