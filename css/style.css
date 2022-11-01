@@ -2045,6 +2045,9 @@ div#collection-items {
 .exhibit-block.layout-exhibit-group .exhibit .image {
   order: 1;
 }
+.exhibits.show #content #exhibit-info {
+  grid-area: tx;
+}
 
 .exhibits.show #content > h1, .exhibits.show #exhibit-page-navigation {
   display: none;
@@ -2500,9 +2503,6 @@ nav#exhibit-pages ul li img {
     grid-template-rows: 30px minmax(30px, auto) auto;
     gap: 1em 2em;
     padding-top: 0;
-  }
-  .exhibits.show #content #exhibit-info {
-    grid-area: tx;
   }
 
   .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {

@@ -24,6 +24,12 @@
         <?php echo $description; ?>
     </div>
     <?php endif; ?>
+
+    <?php if ($relation = metadata('item', array('Dublin Core', 'Relation'), array())): ?>
+    <div class="item-relation">
+        <?php echo $relation; ?>
+    </div>
+    <?php endif; ?>
 </div>
 
 <?php echo foot(); ?>
