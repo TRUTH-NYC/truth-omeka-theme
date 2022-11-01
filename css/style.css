@@ -2010,10 +2010,11 @@ div#collection-items {
 .exhibits.show #content {
   display: grid;
   grid-template-areas:
-    "t t t t t t"
-    "st st st st st st"
-    "mp mp mp mp mp mp"
-    "b b b b b b";
+      "t t t t t t"
+      "st st st st st st"
+      "tx tx tx tx tx tx"
+      "mp mp mp mp mp mp"
+      "b b b b b b";
   grid-template-columns: repeat(6, 1fr);
   justify-content: center;
   align-items: start;
@@ -2489,15 +2490,19 @@ nav#exhibit-pages ul li img {
   .exhibits.show #content {
     display: grid;
     grid-template-areas:
-                          "t t t mp mp mp"
-                          "st st st mp mp mp"
-                          "b b b b b b";
+    "t t t mp mp mp"
+    "st st st mp mp mp"
+    "tx tx tx tx tx tx"
+    "b b b b b b";
     grid-template-columns: 1fr 1fr repeat(2, auto) 1fr 1fr;
     justify-content: center;
     align-items: start;
     grid-template-rows: 30px minmax(30px, auto) auto;
     gap: 1em 2em;
     padding-top: 0;
+  }
+  .exhibits.show #content #exhibit-info {
+    grid-area: tx;
   }
 
   .exhibits.show .exhibit-block.layout-file-text:nth-child(2), .exhibits.show .exhibit-block.layout-file-text:nth-child(3), .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
