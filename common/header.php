@@ -115,7 +115,6 @@
                 <div id="site-sub-title"><?php echo get_theme_option('sub_logo'); ?></div>
             </div>
 
-            <?php $exhibits = get_records('Exhibit'); ?>
             <?php echo public_nav_main(array('role' => 'navigation'))->setUlClass('nav desktop'); ?>
             
             <div class="mobile-nav">
