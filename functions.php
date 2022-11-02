@@ -43,6 +43,7 @@ function get_special_collection($name) {
 // }
 
 function get_homepage_video() {
+    
     $Items = get_records('Item', array(), 250);
     $Item = array_filter($Items, function($item) {
         return metadata($item, array('Dublin Core', 'Type')) == 'Homepage Video';

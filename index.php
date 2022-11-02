@@ -18,56 +18,31 @@
     </div>
 <?php endif; ?>
     <div class="homepage-video">
-        <?php echo get_homepage_video(); ?>
+        <?php if (!empty(get_theme_option('homepage_video'))): ?>
+            <link rel="stylesheet" href="https://unpkg.com/lite-youtube-embed@0.2.0/src/lite-yt-embed.css" />
+            <script src="https://unpkg.com/lite-youtube-embed@0.2.0/src/lite-yt-embed.js"></script>
+            <?php 
+                $url = get_theme_option('homepage_video');
+                if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[\w\-?&!#=,;]+/[\w\-?&!#=/,;]+/|(?:v|e(?:mbed)?)/|[\w\-?&!#=,;]*[?&]v=)|youtu\.be/)([\w-]{11})(?:[^\w-]|\Z)%i', $url, $match)) {
+                    $video_id = $match[1];
+                }
+            ?>
+            <figure>
+            <lite-youtube videoid="<?php echo $video_id; ?>" playlabel="Homepage Video"></lite-youtube>
+            <?php if (!empty(get_theme_option('homepage_video_caption'))): ?>
+                <figcaption> <?php echo get_theme_option('homepage_video_caption'); ?></figcaption>
+            <?php endif; ?>
+            </figure>
+        <?php else: ?>
+            <?php echo get_homepage_video(); ?>
+        <?php endif; ?>
     </div>
 </div>
 
 <?php echo get_view()->geolocationMapBrowse('map_browse', array('list' => 'map-links')); ?>
 <div id="map-links" style="display:none"></div>
 
-<!-- 
-<div id="primary">
-    <?php if (get_theme_option('Display Featured Item') == 1): ?>
-    <!-- Featured Item 
-    <div id="featured-item">
-        <h2><?php echo __('Featured Item'); ?></h2>
-        <?php echo random_featured_items(1); ?>
-    </div><!--end featured-item 
-    <?php endif; ?>
-    <?php if (get_theme_option('Display Featured Collection')): ?>
-    <!-- Featured Collection 
-    <div id="featured-collection">
-        <h2><?php echo __('Featured Collection'); ?></h2>
-        <?php echo random_featured_collection(); ?>
-    </div><!-- end featured collection 
-    <?php endif; ?>	
-    <?php if ((get_theme_option('Display Featured Exhibit')) && function_exists('exhibit_builder_display_random_featured_exhibit')): ?>
-    <!-- Featured Exhibit 
-    <?php echo exhibit_builder_display_random_featured_exhibit(); ?>
-    <?php endif; ?>
-
-</div>
-<!-- end primary -->
-
-<!-- 
-<div id="secondary">
-    <?php
-    $recentItems = get_theme_option('Homepage Recent Items');
-    if ($recentItems === null || $recentItems === ''):
-        $recentItems = 3;
-    else:
-        $recentItems = (int) $recentItems;
-    endif;
-    if ($recentItems):
-    ?>
-    <div id="recent-items">
-        <h2><?php echo __('Recently Added Items'); ?></h2>
-        <?php echo recent_items($recentItems); ?>
-        <p class="view-items-link"><a href="<?php echo html_escape(url('items')); ?>"><?php echo __('View All Items'); ?></a></p>
-    </div>
-    <?php endif; ?>
-
     <?php fire_plugin_hook('public_home', array('view' => $this)); ?>
 
-</div> -->
+</div>
 <?php echo foot(); ?>
