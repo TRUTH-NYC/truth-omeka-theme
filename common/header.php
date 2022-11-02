@@ -52,16 +52,6 @@
             text-shadow: 0px 0px 20px #000;
             <?php endif; ?>
         }
-        a:link {
-            color: <?php echo $linkColor; ?>;
-        }
-        /* a:visited {
-            color: <?php echo $linkColor; ?>;
-        }
-        a:hover, a:active, a:focus {
-            color: <?php echo $linkColor; ?>;
-        }
-        */
 
         .button, button,
         input[type="reset"],

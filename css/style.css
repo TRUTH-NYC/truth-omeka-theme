@@ -1836,16 +1836,16 @@ th {
   }
 
   a:link {
-    color: #888;
+    color: #1279e5;
   }
   a:visited {
-    color: unset;
+    color: #1279e5;
   }
   a:hover {
-    color: unset;
+    color: #2080e8;
   }
   a:active {
-    color: unset;
+    color: #1279e5;
   }
 
   .button, button,
@@ -1930,6 +1930,9 @@ header .nav li a {
   overflow-x: scroll;
   margin-bottom: 1rem;
   width: 100%;
+}
+.years-slider a {
+  color: unset;
 }
 .years-slider::-webkit-scrollbar {
     height: 0;
@@ -2048,6 +2051,9 @@ div#collection-items {
 .exhibits.show #content #exhibit-info {
   grid-area: tx;
 }
+.exhibits.show #content #exhibit-info .relation {
+  color: #1279e5;
+}
 
 .exhibits.show #content > h1, .exhibits.show #exhibit-page-navigation {
   display: none;
@@ -2068,9 +2074,20 @@ div#collection-items {
   max-width: unset!important;
 }
 .exhibits.show #exhibit-pages > h4 > a {
-  color: #000;
   font: normal normal normal 22px/24px EB Garamond;
   grid-area: t;
+  position: relative;
+}
+.exhibits.show #exhibit-pages > h4 > a:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(135deg) translateY(3px);
+  cursor: pointer;
+  z-index: 4;
 }
 .exhibits.show #exhibit-pages > ul > li > a {
   display: none;
@@ -2202,7 +2219,9 @@ div#collection-items {
   font-size: 34px;
   color: #000;
 }
-
+.sub-category-rich-link a {
+  color: unset;
+}
 nav#exhibit-pages ul {
   gap: 24px;
   width: 100%;
