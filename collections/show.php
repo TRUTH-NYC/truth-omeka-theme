@@ -103,13 +103,14 @@ function dump($data, $title="", $background="#EEEEEE", $color="#000000"){
     <?php if ($totalItems > 0): ?>
         <?php foreach($unique_tags as $tag): ?>
             <div> <h3> <?php echo $tag->name; ?> </h3>
-                <?php foreach ($tag->items as $index=>$item): ?>
+                <?php $index = 0; ?>
+                <?php foreach ($tag->items as $item): ?>
                     <?php $itemTitle = metadata($item, array('Dublin Core', 'Title')); ?>
                     <?php if($index == 0): ?>
                         <figure class="item hentry">
                             <div class="item-img">
                                 <?php 
-                                    $rest_item_links = array_map(function($i) { return record_url($i); }, $tag->items);
+                                    $rest_item_links = array_values(array_map(function($i) { return record_url($i); }, $tag->items));
                                 ?>
                                 <a href="<?php echo record_url($item); ?>" data-gallery-links="<?php echo htmlentities(json_encode($rest_item_links)); ?>">
                                     <?php echo record_image($item, 'thumbnail', array('alt' => $itemTitle)); ?>
@@ -118,6 +119,7 @@ function dump($data, $title="", $background="#EEEEEE", $color="#000000"){
                             <figcaption> <?php echo $itemTitle; ?> </figcaption>
                         </figure>
                     <?php endif; ?>
+                    <?php $index += 1; ?>
                 <?php endforeach; ?>
             </div>
         <?php endforeach; ?>

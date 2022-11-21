@@ -214,14 +214,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     modal.arrowLeftClick(() => {
         const prevItem = currentItem;
-        currentItem = (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) - 1] ? (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) - 1] : currentItem;
+        const links = (subGalleryLinks || galleryLinks).map(a => a.href ? new URL(a.href).pathname : a);
+        const link = currentItem.href ? new URL(currentItem.href).pathname : currentItem;
+        currentItem = links[links.indexOf(link) - 1] ? links[links.indexOf(link) - 1] : currentItem;
         if (prevItem !== currentItem) {
             modalLoadCurrentItem();
         }
     });
     modal.arrowRightClick(() => {
         const prevItem = currentItem;
-        currentItem = (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) + 1] ? (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) + 1] : currentItem;
+        const links = (subGalleryLinks || galleryLinks).map(a => a.href ? new URL(a.href).pathname : a);
+        const link = currentItem.href ? new URL(currentItem.href).pathname : currentItem;
+        currentItem = links[links.indexOf(link) + 1] ? links[links.indexOf(link) + 1] : currentItem;
         if (prevItem !== currentItem) {
             modalLoadCurrentItem();
         }
@@ -243,16 +247,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     async function modalLoadCurrentItem() {
-        const first = (subGalleryLinks || galleryLinks).indexOf(currentItem) == 0;
-        const last = (subGalleryLinks || galleryLinks).indexOf(currentItem) == (subGalleryLinks || galleryLinks).length - 1;
+        const links = (subGalleryLinks || galleryLinks).map(a => a.href ? new URL(a.href).pathname : a);
+        const link = currentItem.href ? new URL(currentItem.href).pathname : currentItem;
+        const first = links.indexOf(link) == 0;
+        const last = links.indexOf(link) == links.length - 1;
+        modal.showArrows();
         if (first) {
             modal.hideArrowLeft();
         } else if (last) {
             modal.hideArrowRight();
-        } else {
-            modal.showArrows();
         }
-        const link = currentItem.href || currentItem;
         const html = await fetch(link).then(r => r.text());
         const tm = document.createElement('template');
         tm.innerHTML = html;
