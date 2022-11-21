@@ -136,6 +136,11 @@ function createModal(content, options = {}) {
         showArrowLeft();
     }
 
+    function hideArrows() {
+        hideArrowRight();
+        hideArrowLeft();
+    }
+
     closeButton.addEventListener('click', close);
     modalBackDrop.addEventListener('click', close);
     arrowRight.addEventListener('click', _arrowRightClick);
@@ -151,7 +156,8 @@ function createModal(content, options = {}) {
         arrowLeftClick,
         hideArrowRight,
         hideArrowLeft,
-        showArrows
+        showArrows,
+        hideArrows
     };
 }
 document.addEventListener('DOMContentLoaded', function () {
@@ -251,12 +257,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const link = currentItem.href ? new URL(currentItem.href).pathname : currentItem;
         const first = links.indexOf(link) == 0;
         const last = links.indexOf(link) == links.length - 1;
-        modal.showArrows();
-        if (first) {
-            modal.hideArrowLeft();
-        } else if (last) {
-            modal.hideArrowRight();
+        
+        if (links.length == 1) {
+            modal.hideArrows();
+        } else {
+            modal.showArrows();
+            if (first) {
+                modal.hideArrowLeft();
+            } else if (last) {
+                modal.hideArrowRight();
+            }
         }
+
         const html = await fetch(link).then(r => r.text());
         const tm = document.createElement('template');
         tm.innerHTML = html;
