@@ -2230,10 +2230,13 @@ div#collection-items {
   color: unset;
 }
 nav#exhibit-pages ul {
-  gap: 24px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  --grid-item--max-width: 300px;
+  --grid-item--min-width: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  gap: 24px;
+
 }
 nav#exhibit-pages ul > li {
   flex: 1 1 320px;
