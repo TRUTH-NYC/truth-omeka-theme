@@ -116,8 +116,16 @@
                 <?php echo public_nav_main(array('role' => 'navigation'))->setUlClass('mobile-nav-panel nav mobile'); ?>
             </div>
         </header>
-        
         <div class="container">
+            <div class="years-slider-container">
+                <div class="arrow prev" onclick="yearsSlider.prevSlide()"></div>
+                <div class="years-slider" >
+                    <?php foreach (get_year_collections() as $collection): ?>
+                        <h2><?php echo link_to($collection, null, metadata($collection, array('Dublin Core', 'Title'))); ?></h2>
+                    <?php endforeach; ?>
+                </div>
+                <div class="arrow next" onclick="yearsSlider.nextSlide()"></div>
+            </div>
                         
             <div id="content" role="main" tabindex="-1">
                 <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>

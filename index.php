@@ -2,15 +2,7 @@
 <?php 
     queue_css_file('geolocation-items-map');
 ?>
-<div class="years-slider-container">
-    <div class="arrow prev" onclick="yearsSlider.prevSlide()"></div>
-    <div class="years-slider" >
-        <?php foreach (get_year_collections() as $collection): ?>
-            <h2><?php echo link_to($collection, null, metadata($collection, array('Dublin Core', 'Title'))); ?></h2>
-        <?php endforeach; ?>
-    </div>
-    <div class="arrow next" onclick="yearsSlider.nextSlide()"></div>
-</div>
+
 <div class="homepage-content grid homepage-grid-2-cols">
 <?php if ($homepageText = get_theme_option('Homepage Text')): ?>
     <div class="homepage-paragraph">

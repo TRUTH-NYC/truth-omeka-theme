@@ -8,7 +8,9 @@ function createModal(content, options = {}) {
     const modalBackDrop = document.createElement('div');
     const modalElement = document.createElement('div');
     const arrowRight = document.createElement('div');
+    const arrowRight_inner = document.createElement('div');
     const arrowLeft = document.createElement('div');
+    const arrowLeft_inner = document.createElement('div');
     const closeButton = document.createElement('div');
 
     closeButton.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -22,7 +24,9 @@ function createModal(content, options = {}) {
     }
     
     arrowRight.classList.add('modal-arrow-right');
+    arrowRight_inner.classList.add('modal-arrow-right__inner');
     arrowLeft.classList.add('modal-arrow-left');
+    arrowLeft_inner.classList.add('modal-arrow-left__inner');
     closeButton.classList.add('modal-close');
 
     modalWrapper.setAttribute('style', `
@@ -69,13 +73,15 @@ function createModal(content, options = {}) {
     document.body.append(modalWrapper);
     
     modalWrapper.append(arrowRight);
+    arrowRight.append(arrowRight_inner);
     modalWrapper.append(arrowLeft);
+    arrowLeft.append(arrowLeft_inner);
     modalWrapper.append(closeButton);
 
     contentElement.innerHTML = content;
 
     function open() {
-        modalWrapper.style.display = 'block';
+        modalWrapper.style.display = '';
         document.body.dispatchEvent(new CustomEvent('modal:open', { detail: modalWrapper }));
     }
 
@@ -160,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const galleryLinks = [...document.querySelectorAll('.exhibit-gallery-item a, #collection-items a')];
-    let currentItem;
+    let currentItem, subGalleryLinks;
 
     const shadowStyles = `
     h1 {
@@ -208,14 +214,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     modal.arrowLeftClick(() => {
         const prevItem = currentItem;
-        currentItem = galleryLinks[galleryLinks.indexOf(currentItem) - 1] ? galleryLinks[galleryLinks.indexOf(currentItem) - 1] : currentItem;
+        currentItem = (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) - 1] ? (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) - 1] : currentItem;
         if (prevItem !== currentItem) {
             modalLoadCurrentItem();
         }
     });
     modal.arrowRightClick(() => {
         const prevItem = currentItem;
-        currentItem = galleryLinks[galleryLinks.indexOf(currentItem) + 1] ? galleryLinks[galleryLinks.indexOf(currentItem) + 1] : currentItem;
+        currentItem = (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) + 1] ? (subGalleryLinks || galleryLinks)[(subGalleryLinks || galleryLinks).indexOf(currentItem) + 1] : currentItem;
         if (prevItem !== currentItem) {
             modalLoadCurrentItem();
         }
@@ -226,14 +232,19 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             modal.open();
             currentItem = el;
+            try {
+                subGalleryLinks = JSON.parse(el.dataset.galleryLinks);
+            } catch (err) {
+                subGalleryLinks = null;
+            }
             modalLoadCurrentItem();
         });
 
     });
 
     async function modalLoadCurrentItem() {
-        const first = galleryLinks.indexOf(currentItem) == 0;
-        const last = galleryLinks.indexOf(currentItem) == galleryLinks.length - 1;
+        const first = (subGalleryLinks || galleryLinks).indexOf(currentItem) == 0;
+        const last = (subGalleryLinks || galleryLinks).indexOf(currentItem) == (subGalleryLinks || galleryLinks).length - 1;
         if (first) {
             modal.hideArrowLeft();
         } else if (last) {
@@ -241,7 +252,8 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             modal.showArrows();
         }
-        const html = await fetch(currentItem.href).then(r => r.text());
+        const link = currentItem.href || currentItem;
+        const html = await fetch(link).then(r => r.text());
         const tm = document.createElement('template');
         tm.innerHTML = html;
         const itemPageContent = tm.content.querySelector('#content').outerHTML;

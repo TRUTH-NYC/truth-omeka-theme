@@ -55,3 +55,59 @@ function get_homepage_video() {
     '<figcaption>' . metadata($videoItem, array('Dublin Core', 'Source')) . '</figcaption>' .
     '</figure>';
 }
+
+function get_tags_for_items_in_collection($collection = null) {
+
+    // If collection is null, get the current collection.
+    if (!$collection) {
+        $collection = get_current_collection();
+    }
+
+    // Get the database.
+    $db = get_db();
+
+    // Get the Tag table.
+    $table = $db->getTable('Tag');
+
+    // Build the select query.
+    $select = $table->getSelectForFindBy();   
+
+    // Join to the Item table where the collection_id is equal to the ID of our Collection.
+    if ($collection) {
+        $table->filterByTagType($select, 'Item');
+        $select->where('collection_id = ?', $collection->id);
+    }
+
+    // Fetch some tags with our select.
+    $tags = $table->fetchObjects($select);
+
+    return $tags;
+}
+
+
+function get_items_in_collection($collection = null) {
+
+    // If collection is null, get the current collection.
+    if (!$collection) {
+        $collection = get_current_collection();
+    }
+
+    // Get the database.
+    $db = get_db();
+
+    // Get the Tag table.
+    $table = $db->getTable('Item');
+
+    // Build the select query.
+    $select = $table->getSelectForFindBy();   
+
+    // Join to the Item table where the collection_id is equal to the ID of our Collection.
+    if ($collection) {
+        $select->where('collection_id = ?', $collection->id);
+    }
+
+    // Fetch some tags with our select.
+    $items = $table->fetchObjects($select);
+
+    return $items;
+}

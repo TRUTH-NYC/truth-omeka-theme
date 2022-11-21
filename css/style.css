@@ -2049,7 +2049,7 @@ div#collection-items {
   order: 1;
 }
 .exhibits.show #content #exhibit-info {
-  grid-area: tx;
+  grid-area: st;
 }
 .exhibits.show #content #exhibit-info .relation {
   color: #1279e5;
@@ -2095,8 +2095,15 @@ div#collection-items {
 .exhibits.show #exhibit-pages > ul > li.current > a {
   display: block;
   color: #000;
-  font: normal normal normal 48px/48px EB Garamond;
-  grid-area: st;
+  font: normal normal normal 16px/48px EB Garamond;
+  margin-bottom: 1rem;
+  grid-area: tx;
+}
+.exhibits.show #exhibit-info .description {
+  font-size: 28px;
+  margin-bottom: 0;
+}
+.exhibits.show #exhibit-info .description {
 }
 .exhibits.show .exhibit-block.layout-gallery-by-tag .gallery .exhibit-gallery-item,
 .exhibits.show .exhibit-block.layout-gallery .gallery .exhibit-gallery-item {
@@ -2513,7 +2520,7 @@ nav#exhibit-pages ul li img {
     display: grid;
     grid-template-areas:
     "t t t mp mp mp"
-    "st st st mp mp mp"
+    "st st st st st st"
     "tx tx tx tx tx tx"
     "b b b b b b";
     grid-template-columns: 1fr 1fr repeat(2, auto) 1fr 1fr;
@@ -2649,25 +2656,44 @@ ul.nav > li.active a {
   width: 40px;
   height: 40px;
   position: absolute;
-  border: 3px solid;
-  border-width: 0 3px 3px 0;
-  transform: rotate(315deg);
   right: 10%;
   cursor: pointer;
   top: calc(45% - 20px);
   z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.modal-arrow-right__inner {
+  width: 25px;
+  height: 25px;
+  border: 3px solid;
+  border-width: 0 3px 3px 0;
+  transform: translate(0px, 5px) rotate(315deg);
+  transform-origin: center;
+}
+
 .modal-arrow-left {
   width: 40px;
   height: 40px;
   position: absolute;
-  border: 3px solid;
-  border-width: 0 3px 3px 0;
-  transform: rotate(135deg);
   left: 10%;
   cursor: pointer;
   top: calc(45% - 20px);
   z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-arrow-left__inner {
+  width: 25px;
+  height: 25px;
+  border: 3px solid;
+  border-width: 0 3px 3px 0;
+  transform: translate(10px, 5px) rotate(135deg);
+  transform-origin: center;
 }
 .modal-close {
   position: absolute;
