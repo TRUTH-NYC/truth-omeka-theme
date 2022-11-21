@@ -1,76 +1,20 @@
 <?php
 $collectionTitle = metadata('collection', 'display_title');
 $totalItems = metadata('collection', 'total_items');
+$description =  metadata('collection', array('Dublin Core', 'Description'));
 $collection = get_current_record('collection', false);
 $items = get_items_in_collection($collection);
 // $items = get_loop_records('items');
-
-function dump($data, $title="", $background="#EEEEEE", $color="#000000"){
-
-    //=== Style  
-    echo "  
-    <style>
-        /* Styling pre tag */
-        pre {
-            padding:10px 20px;
-            white-space: pre-wrap;
-            white-space: -moz-pre-wrap;
-            white-space: -pre-wrap;
-            white-space: -o-pre-wrap;
-            word-wrap: break-word;
-        }
-
-        /* ===========================
-        == To use with XDEBUG 
-        =========================== */
-        /* Source file */
-        pre small:nth-child(1) {
-            font-weight: bold;
-            font-size: 14px;
-            color: #CC0000;
-        }
-        pre small:nth-child(1)::after {
-            content: '';
-            position: relative;
-            width: 100%;
-            height: 20px;
-            left: 0;
-            display: block;
-            clear: both;
-        }
-
-        /* Separator */
-        pre i::after{
-            content: '';
-            position: relative;
-            width: 100%;
-            height: 15px;
-            left: 0;
-            display: block;
-            clear: both;
-            border-bottom: 1px solid grey;
-        }  
-    </style>
-    ";
-
-    //=== Content            
-    echo "<pre style='background:$background; color:$color; padding:10px 20px; border:2px inset $color'>";
-    echo    "<h2>$title</h2>";
-            var_dump($data); 
-    echo "</pre>";
-
-}
 ?>
 
-<?php echo head(array('title' => $collectionTitle, 'bodyclass' => 'collections show')); ?>
+<?php echo head(array('title' => $description, 'bodyclass' => 'collections show')); ?>
 
-<h1><?php echo metadata('collection', 'rich_title', array('no_escape' => true)); ?></h1>
+<?php // echo '<h1>'. metadata('collection', 'rich_title', array('no_escape' => true)) . '</h1>'; ?>
 
-<p><?php echo metadata('collection', array('Dublin Core', 'Description')); ?></p>
+<h1><?php echo $description; ?></h1>
 
 <div id="collection-items">
         <?php 
-
             $all_tags = array();
             $tags = array();
 

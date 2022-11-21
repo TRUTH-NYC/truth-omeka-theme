@@ -1680,20 +1680,6 @@ th {
   }
 
   /* @end */
-  /* @group ----- Footer ----- */
-  footer {
-    clear: both;
-    overflow: hidden;
-    padding: 20px;
-  }
-  footer p {
-    float: left;
-  }
-}
-@media screen and (min-width: 48em) {
-  footer p {
-    width: 30%;
-  }
 }
 @media screen {
   footer ul {
@@ -1702,9 +1688,32 @@ th {
     margin: 0 0 0 60px;
     text-align: right;
   }
+  footer {
+    margin-top: 58px;
+  }
   footer li {
     margin-left: 12px;
   }
+
+  div#footer-text {
+    display: flex;
+    font: normal normal normal 18px/42px EB Garamond;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  div#footer-text p a {
+    vertical-align: sub;
+    color: #000;
+  }
+  div#footer-text p {
+    flex: 0 0 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+
 
   /* @end */
   /* @group ----- Search Results ----- */
@@ -1988,6 +1997,7 @@ transform: rotate(-135deg)
     grid-column: span 2;
   }
 }
+
 .homepage-video {
   grid-column: span 2;
 }
@@ -2561,6 +2571,26 @@ nav#exhibit-pages ul li img {
     display: none;
   }
   /* @end */
+
+  div#footer-text {
+    flex-wrap: nowrap;
+  }
+
+  div#footer-text p {
+    margin-right: 20px;
+    flex: 0 0 auto;  
+  }
+
+  div#footer-text p:after {
+    content: '|';
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  div#footer-text p:last-child::after {
+    display: none;
+    margin-left: 10px;
+  }
 }
 
 /* Mobile Nav */
