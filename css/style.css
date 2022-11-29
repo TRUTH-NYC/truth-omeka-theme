@@ -2262,7 +2262,12 @@ div#collection-items {
   color: var(--title-color, #fff);
   line-height: var(--title-line-height, 54px);
 }
-.exhibits.summary .exhibit-description h2 {
+.exhibits.summary .exhibit-description h2,
+.exhibits.summary .exhibit-description h3,
+.exhibits.summary .exhibit-description h4,
+.exhibits.summary .exhibit-description h5,
+.exhibits.summary .exhibit-description h6
+ {
   font-family: var(--subtitle-font-family);
   font-size: var(--subtitle-font-size);
   color: var(--subtitle-color);
