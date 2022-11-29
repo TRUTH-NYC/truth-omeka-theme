@@ -2180,7 +2180,12 @@ div#collection-items {
 .page_card_w_image .exhibit-header-card-content {
   padding: 10%;
 }
-
+.exhibit-header-card-content a {
+  color: inherit !important;
+}
+.exhibit-header-card-content a:visited {
+  color: inherit !important;
+}
 .exhibit-header-card p {
   font-size: var(--font-size);
   color: var(--color, #000);
