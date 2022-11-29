@@ -2169,12 +2169,15 @@ div#collection-items {
 .exhibits.summary .exhibit-header-card img {
   max-width: 100%;
 }
-.exhibits.summary .exhibit-header-card {
+.exhibits.summary .exhibit-header-card.page_card_w_image {
   display: grid;
   grid-template-columns: 1fr;
   background-color: var(--background-color);
 }
 .exhibit-header-card-content {
+  padding: 10% 20px;
+}
+.page_card_w_image .exhibit-header-card-content {
   padding: 10%;
 }
 
@@ -2574,10 +2577,13 @@ nav#exhibit-pages ul li img {
   .exhibits.show .exhibit-block.layout-file-text:nth-child(4) {
       grid-area: g3;
   }
-  .exhibits.summary .exhibit-header-card {
+  .exhibits.summary .exhibit-header-card.page_card_w_image {
     grid-template-columns: 1fr 1fr;
-  }  
+  }
 
+  .exhibit-summary-regular-cover-image {
+    margin-bottom: 15px;
+  }
   .exhibit-cover-image {
     display: block;
   }
