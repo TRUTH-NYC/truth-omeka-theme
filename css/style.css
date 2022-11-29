@@ -2174,8 +2174,9 @@ div#collection-items {
   grid-template-columns: 1fr;
   background-color: var(--background-color);
 }
-.exhibit-header-card-content {
-  padding: 10% 20px;
+.exhibit-regular-page {
+  background-color: var(--background-color);
+  padding: 10px 20px;
 }
 .page_card_w_image .exhibit-header-card-content {
   padding: 10%;
