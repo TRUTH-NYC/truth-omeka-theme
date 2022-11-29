@@ -2196,6 +2196,10 @@ div#collection-items {
   background-color: rgba(0,0,0,.5);
   color: #ffffffb3;
 }
+.exhibit-cover-image.regular figcaption {
+  bottom: 5px;
+}
+
 .exhibit-cover-image figcaption:empty {
   display: none;
 }
@@ -2288,6 +2292,17 @@ nav#exhibit-pages ul li img {
 
 .exhibits.show #exhibit-blocks {
   grid-area: b;
+}
+
+
+.exhibit-cover-image.regular {
+  margin-bottom: 15px;
+  max-width: 100%;
+  display: block;
+  position: relative;
+}
+.exhibit-summary-regular-cover-image {
+  width: 100%;
 }
 
 @media screen and (min-width: 800px) {
@@ -2581,9 +2596,10 @@ nav#exhibit-pages ul li img {
     grid-template-columns: 1fr 1fr;
   }
 
-  .exhibit-summary-regular-cover-image {
+  .exhibit-cover-image.regular {
     margin-bottom: 15px;
   }
+  
   .exhibit-cover-image {
     display: block;
   }
