@@ -2188,6 +2188,13 @@ div#collection-items {
   font-family: var(--font-family, left);
 }
 
+.exhibit-regular-page p {
+  font-size: var(--font-size);
+  color: var(--color, #000);
+  text-align: var(--text-align, left);
+  font-family: var(--font-family, left);
+}
+
 .exhibit-cover-image figcaption {
   position: absolute;
   right: 0;
@@ -2244,13 +2251,26 @@ div#collection-items {
   text-transform: uppercase;
 }
 
-.exhibits.summary .exhibit-description h1 .exhibit-header-card h1 {
+.exhibits.summary .exhibit-description h1, .exhibit-header-card h1 {
   font-family: var(--title-font-family, EB Garamond);
   font-size: var(--title-font-size, 28px);
   color: var(--title-color, #fff);
   line-height: var(--title-line-height, 54px);
 }
 .exhibits.summary .exhibit-description h2 {
+  font-family: var(--subtitle-font-family);
+  font-size: var(--subtitle-font-size);
+  color: var(--subtitle-color);
+  line-height: var(--subtitle-line-height);
+}
+
+.exhibits.summary .exhibit-regular-page h1, .exhibit-regular-page h1 {
+  font-family: var(--title-font-family, EB Garamond);
+  font-size: var(--title-font-size, 28px);
+  color: var(--title-color, #fff);
+  line-height: var(--title-line-height, 54px);
+}
+.exhibits.summary .exhibit-regular-page h2 {
   font-family: var(--subtitle-font-family);
   font-size: var(--subtitle-font-size);
   color: var(--subtitle-color);
