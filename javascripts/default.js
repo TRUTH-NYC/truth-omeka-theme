@@ -194,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .item-content {
+        overflow: auto;
+    }
     .item.hentry {
         display: flex;
         flex-direction: column;

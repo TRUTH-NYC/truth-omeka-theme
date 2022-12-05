@@ -55,9 +55,19 @@ $items = get_items_in_collection($collection);
                             <div class="item-img">
                                 <?php 
                                     $rest_item_links = array_values(array_map(function($i) { return record_url($i); }, $tag->items));
+                                    $thumbnail = file_display_url($item->getFile(0));
+                                    $fullsize = file_display_url($item->getFile(0), 'fullsize');
+                                    $image = '<img image-url 
+                                    srcset="' . $thumbnail . ' 139w, '. $fullsize . ' 1000w" 
+                                    sizes="(max-width: 530px) calc(100vw - 4%), (max-width: 918px) calc((100vw - 4% - 3em) / 2), (max-width: 1244px) calc((100vw - 4% - 6em) / 3)"
+                                    src="'
+                                    . $fullsize 
+                                    . '" alt=" ' 
+                                    . $itemTitle 
+                                    . '">';
                                 ?>
                                 <a href="<?php echo record_url($item); ?>" data-gallery-links="<?php echo htmlentities(json_encode($rest_item_links)); ?>">
-                                    <?php echo record_image($item, 'thumbnail', array('alt' => $itemTitle)); ?>
+                                    <?php echo $image; ?>
                                 </a>
                             </div>
                             <figcaption> <?php echo $itemTitle; ?> </figcaption>

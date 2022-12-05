@@ -2309,6 +2309,7 @@ nav#exhibit-pages ul > li {
 }
 nav#exhibit-pages ul li img {
   max-width: 100%;
+  width: 100%;
 }
 
 .summary #exhibit-pages {

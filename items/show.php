@@ -17,19 +17,21 @@
     <?php 
         // we need to use inline style here because modal uses a isolated css context. 
     ?>
-    <h1 style="display: none"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
+    <div class="item-content">
+        <h1 style="display: none"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
 
-    <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array())): ?>
-    <div class="item-description">
-        <?php echo $description; ?>
-    </div>
-    <?php endif; ?>
+        <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array())): ?>
+        <div class="item-description">
+            <?php echo $description; ?>
+        </div>
+        <?php endif; ?>
 
-    <?php if ($relation = metadata('item', array('Dublin Core', 'Relation'), array())): ?>
-    <div class="item-relation">
-        <?php echo $relation; ?>
+        <?php if ($relation = metadata('item', array('Dublin Core', 'Relation'), array())): ?>
+        <div class="item-relation">
+            <?php echo $relation; ?>
+        </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
 </div>
 
 <?php echo foot(); ?>
