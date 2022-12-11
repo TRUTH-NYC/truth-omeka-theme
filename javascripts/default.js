@@ -311,7 +311,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adjust max height
     [...document.querySelectorAll('ul.nav > li')].forEach(el => {
         el.addEventListener('mouseover', e => {
-           el.setAttribute('style', `--height: ${el.querySelector('ul').scrollHeight}px;`);
+            const subMenu = el.querySelector('ul');
+            if (subMenu) {
+                el.setAttribute('style', `--height: ${subMenu.scrollHeight}px;`);
+            }
         });
         
     });
