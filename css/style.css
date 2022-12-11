@@ -2258,11 +2258,12 @@ div#collection-items {
 }
 
 .exhibit-cover-image-img {
+  background-size: contain;
   background-size: auto calc(100% - var(--caption-size, 60px) - 16px - 4px);
   background-position: center 10px;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100%;
+  height: calc(100% - var(--caption-size, 60px) - 14px);
 }
 
 .exhibit-cover-image-img.mobile-only {
