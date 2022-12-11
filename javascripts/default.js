@@ -318,4 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
     });
+
+    [...document.querySelectorAll('figure')].forEach(el => {
+        const caption = el.querySelector('figcaption');
+        if (caption) {
+            el.setAttribute('style', `--caption-size: ${caption.scrollHeight}px;`);
+        }
+    });
 });
