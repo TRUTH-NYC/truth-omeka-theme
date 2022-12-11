@@ -1022,6 +1022,32 @@ th {
     padding-left: 0;
   }
 
+  ul.nav li {
+    position: relative;
+  }
+  ul.nav li ul {
+      top: 100%;
+      left: 0;
+      max-height: 0;
+      position: absolute;
+      overflow: hidden;
+      transition: max-height .3s ease-in-out;
+      background-color: #fff;
+      width: 300px;
+      padding-inline-start: 0px;
+      line-height: 2;
+      padding: 0 2rem;
+      margin-left: -2rem;
+      list-style: none;
+      z-index: 10;
+    }
+  ul.nav li ul li {
+    margin-bottom: 20px;
+  }
+  ul.nav li:hover ul {
+      max-height: var(--height, 200px);
+  }
+
   .top ul {
     border: solid #ccc;
     border-width: 0 0 1px 0;
@@ -1919,7 +1945,7 @@ header .nav > li {
 header .nav li.active {
   color: var(--color-active);
 }
-header .nav li.active a {
+header .nav li.active > a {
   border-bottom: 10px solid currentColor;
   margin-bottom: -10px;
 }
@@ -1929,6 +1955,10 @@ header .nav li:hover {
 
 header .nav li a {
   color: inherit;
+}
+
+header .nav > li > ul {
+  color: var(--color-gray);
 }
 
 .container {
@@ -2724,7 +2754,7 @@ ul.nav > li {
 ul.nav > li.active {
   color: var(--color-active);
 }
-ul.nav > li.active a {
+ul.nav > li.active > a {
   border-bottom: 10px solid currentColor;
   margin-bottom: -10px;    
 }
