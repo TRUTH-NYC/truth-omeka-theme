@@ -307,4 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCb);
     
     resizeCb();
+
+    // Adjust max height
+    [...document.querySelectorAll('ul.nav > li')].forEach(el => {
+        el.addEventListener('mouseover', e => {
+           el.setAttribute('style', `--height: ${el.querySelector('ul').scrollHeight}px;`);
+        });
+        
+    });
 });
