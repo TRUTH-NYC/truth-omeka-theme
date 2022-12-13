@@ -1785,6 +1785,10 @@ th {
   #search-results .image {
     margin: 0 0.75em 0 0;
   }
+  
+  table#search-results img {
+    width: unset !important;
+  }
 
   /* @end */
   /* @group ----- Exhibit Builder ----- */
